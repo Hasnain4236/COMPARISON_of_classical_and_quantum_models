@@ -7,5 +7,6 @@ scikit-learn
 qiskit>=1.0.0,<2.0.0
 qiskit-machine-learning
 qiskit-ibm-runtime
+qiskit-algorithms
 pennylane
 torch
