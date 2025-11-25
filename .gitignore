@@ -1,0 +1,19 @@
+# User requested exclusions
+data/
+paper/
+results/
+src/experiments/
+
+# Security
+apikey.json
+.env
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+env/
+venv/
+.venv/
