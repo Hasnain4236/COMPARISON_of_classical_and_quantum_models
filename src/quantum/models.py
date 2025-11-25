@@ -1,13 +1,11 @@
 from qiskit.circuit.library import ZZFeatureMap, RealAmplitudes
 from qiskit_machine_learning.algorithms import QSVC, VQC, VQR
 from qiskit_machine_learning.kernels import FidelityQuantumKernel
-from qiskit.primitives import Sampler, Estimator
-from qiskit_algorithms.optimizers import COBYLA
-from qiskit_algorithms.state_fidelities import ComputeUncompute
+from qiskit.primitives import StatevectorSampler, StatevectorEstimator
 
 # Runtime imports
 try:
-    from qiskit_ibm_runtime import QiskitRuntimeService, Sampler as RuntimeSampler, Estimator as RuntimeEstimator, Session
+    from qiskit_ibm_runtime import QiskitRuntimeService, SamplerV2 as RuntimeSampler, EstimatorV2 as RuntimeEstimator, Session
     RUNTIME_AVAILABLE = True
 except ImportError:
     RUNTIME_AVAILABLE = False
@@ -32,9 +30,9 @@ class QuantumModel:
     def _build_model(self, n_features):
         self.n_qubits = n_features
         
-        # Setup Primitives
-        sampler = Sampler()
-        estimator = Estimator()
+        # Setup Primitives (Default to Local V2)
+        sampler = StatevectorSampler()
+        estimator = StatevectorEstimator()
         
         if self.api_token:
             if not RUNTIME_AVAILABLE:
